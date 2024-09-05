@@ -439,123 +439,136 @@
     height: 500px;
   }
 
-  .chatbox-container.hidden {
-    display: none;
-  }
+.chatbox-container.hidden {
+  display: none;
+}
 
-  .chatbox-image {
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
-    width: 160px; /* Adjust size as needed */
-    height: 150px;
-    cursor: pointer;
-  }
-  
-  .chatbox-header {
-    background-color: #ec1d23;
-    color: white;
-    padding: 1px;
-    border-radius: 10px 10px 0 0;
-    display: flex;
-    justify-content: end;
-    align-items: center;
-  }
-  
-  .chatbox-body {
-    flex: 1;
-    padding: 10px;
-    overflow-y: scroll;
-    background-color: #f9f9f9;
-  }
-  
-  .message {
-    margin: 10px 0;
-    padding: 10px;
-    border-radius: 10px;
-    max-width: 80%;
-  }
-  
-  .received {
-    align-self: flex-start;
-  }
-  
-  .sent {
-    background-color: #ec1d23;
-    color: white;
-    align-self: flex-end;
-  }
+.chatbox-image {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  width: 160px; /* Adjust size as needed */
+  height: 150px;
+  cursor: pointer;
+}
 
-  .chatbox-title {
-    font-size: 20px;
-    font-weight: 600; /* Slightly bold */
-    margin-bottom: 10px;
-    text-align: center;
-  }
-  
-  .chatbox-subtext {
-    font-size: 14px;
-    color: #6c757d; /* Light gray for subtext */
-    margin-bottom: 20px;
-    line-height: 1.5; /* Better readability */
-  }
+.chatbox-header {
+  background-color: #ec1d23;
+  color: white;
+  padding: 1px;
+  border-radius: 10px 10px 0 0;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+}
 
-  .chat-topics {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    justify-content: center; /* Center the buttons horizontally */
-  }
-  .message-display {
-    margin-top: 10px;
-  }
+.chatbox-body {
+  flex: 1;
+  padding: 10px;
+  overflow-y: scroll;
+  background-color: #f9f9f9;
+}
 
-  .chat-topics button {
-    background-color: #e9ecef;
-    border: none;
-    border-radius: 20px;
-    padding: 10px 15px;
-    cursor: pointer;
-    font-size: 14px;
-    transition: background-color 0.3s ease;
-  }
-  
-  .chat-topics button:hover {
-    background-color: #dee2e6;
-  }
-  
-  .chatbox-footer {
-    display: flex;
-    align-items: center;
-    padding: 10px;
-    border-top: 1px solid #ccc;
-  }
-  
-  .chatbox-footer input[type="text"] {
-    flex: 1;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    margin-right: 10px;
-  }
-  
-  .chatbox-footer button {
-    padding: 10px;
-    background-color: transparent;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .chatbox-footer button:hover {
-    background-color: transparent;
-  }
-  
-  .close-btn {
-    background: none;
-    border: none;
-    color: white;
-    font-size: 16px;
-    cursor: pointer;
-  }
+.message {
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 10px;
+  max-width: 80%;
+}
+
+.received {
+  align-self: flex-start;
+}
+
+.sent {
+  background-color: #ec1d23;
+  color: white;
+  align-self: flex-end;
+}
+
+.chatbox-title {
+  font-size: 20px;
+  font-weight: 600; /* Slightly bold */
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.chatbox-subtext {
+  font-size: 14px;
+  color: #6c757d; /* Light gray for subtext */
+  margin-bottom: 20px;
+  line-height: 1.5; /* Better readability */
+}
+
+.chat-topics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center; /* Center the buttons horizontally */
+}
+.message-display {
+  margin-top: 10px;
+}
+
+.chat-topics button {
+  background-color: #e9ecef;
+  border: none;
+  border-radius: 20px;
+  padding: 10px 15px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
+
+.chat-topics button:hover {
+  background-color: #dee2e6;
+}
+
+.chatbox-footer {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border-top: 1px solid #ccc;
+}
+
+.chatbox-footer input[type="text"] {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+
+.chatbox-footer button {
+  padding: 10px;
+  background-color: transparent;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.chatbox-footer button:hover {
+  background-color: transparent;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+/* chatbot.component.scss */
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%; /* Takes the full height of the chatbox-body */
+}
+
+.loader img {
+  width: 10rem;
+  height: 10rem;
+}
