@@ -1,156 +1,25 @@
-<app-header></app-header> <br /><br /><br /><br /><br />
-<div class="navigation-component">
-  <ul class="navigation">
-    <li class="navigation-item">
-      <span class="navigation-item-clickable">
-        {{ "LEADS /" }}
-      </span>
-      <span class="last-nav-item">
-        {{ "HELLO" }}
-      </span>
-    </li>
-  </ul>
-</div>
-<div class="header-container">
-  <div class="left-section">
-    <img
-      id="nav-back-icon"
-      class="back-icon"
-      src="assets/images/icons/nav-icon-left.svg"
-      alt="back"
-      (click)="onBack()"
-    />
-    <h1>{{ "HELLO" }}</h1>
-    <ng-content></ng-content>
+<!-- chatbot.component.html -->
+<div class="chatbox-container" [class.hidden]="!sessionId">
+  <div class="chatbox-header">
+    <button class="close-btn" (click)="sessionId = null">×</button>
+  </div>
+  <div class="chatbox-body">
+    <div *ngFor="let message of messages">
+      <div class="message" [ngClass]="message.sender === 'user' ? 'sent' : 'received'">
+        {{ message.text }}
+      </div>
+    </div>
+
+    <!-- Loader -->
+    <div *ngIf="loading" class="loader">
+      <img src="assets/images/Ellipsis@1x-1.0s-200px-200px.svg" alt="Loading..." />
+    </div>
+  </div>
+
+  <div class="chatbox-footer">
+    <input [(ngModel)]="query" type="text" placeholder="Ask me anything..." />
+    <button (click)="sendMessage()">Send</button>
   </div>
 </div>
 
-<div class="ctos-report-container">
-  <div class="header">
-    <div class="heading-text">
-      <div class="heading">
-        <div class="main-heading">
-          <div class="text">Applicant</div>
-        </div>
-        <div class="tagline">12345</div>
-      </div>
-    </div>
-    <div class="heading-actions-container">
-      <div class="download-report-button">
-        <div class="text">View Report</div>
-      </div>
-      <div class="re-generate-button">
-        <div class="text">Retrieve Report Again</div>
-      </div>
-    </div>
-  </div>
-  <div class="body">
-    <div class="fin-highlight">
-      <div class="section-left">
-        <div class="heading">REPORT HIGHLIGHTs</div>
-        <div class="growth-details">
-          <div class="growth-heading">Nett Worth</div>
-          <div class="heading"></div>
-          <div class="value">
-            <span class="currency">MYR</span> {{ "1,500,000.00" }}
-          </div>
-          <div class="heading"></div>
-          <div class="growth">
-            <span>{{ "0.09" }}% </span>
-            YoY Growth
-          </div>
-        </div>
-        <div class="business-sector-details">
-          <div class="sector-heading">Business sector</div>
-          <div class="sector-value">
-            {{ "TYRES AND MOTOR VEHICLES ACCESSORIES" }}
-          </div>
-        </div>
-        <div class="other-metrics">
-          <div class="row-one">
-            <div class="lite-status">
-              <div class="metric-heading">Lite Status<sup>*</sup></div>
-              <div class="metric-value-container">
-                <div class="value">{{ "Completed" }}</div>
-              </div>
-            </div>
-            <div class="last-updated">
-              <div class="metric-heading">Report As Of</div>
-              <div class="metric-value-container">
-                <div class="value">{{ "15/8/2024" }}</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="section-right">
-        <div>
-          <div class="graph-heading">Financial Summary</div>
-        </div>
-        <!-- <canvas
-        id="ctosLiteCanvas"
-        baseChart
-        width="500px"
-        height="250px"
-        chartType="line"
-      ></canvas> -->
-        <div class="empty-graph-placeholder">No Financial Records Found</div>
-      </div>
-      <div class="exp-text-container">
-        <div class="exp-text">*</div>
-        <div class="exp-text">
-          <div class="heading">Complete</div>
-          <div>No further diligence required (no litigations found)</div>
-        </div>
-        <div class="exp-text">
-          <div class="heading">Dash (-)</div>
-          <div>
-            Further diligence using the CTOS Full report with consent is
-            recommended
-          </div>
-        </div>
-        <div class="exp-text">
-          <div class="heading">MDI search Recommended</div>
-          <div>Additional bankruptcy search is recommended</div>
-        </div>
-      </div>
-    </div>
-    <div class="fin-highlight">
-      {{ "Company Charges" }}
-    </div>
-  </div>
-  <div class="chatbox-container" [ngClass]="{ 'hidden': !isChatboxOpen }">
-    <div class="chatbox-header">
-      <button class="close-btn" (click)="toggleChatbox()">X</button>
-    </div>
-    <div class="chatbox-body">
-      <h4 class="chatbox-title">Welcome to CIMB AI ChatBox</h4>
-      <p class="chatbox-subtext">
-        Let's begin the conversation or select one of the topics below.
-      </p>
-      <div class="chat-topics">
-        <button *ngFor="let topic of topics" (click)="selectTopic(topic)">{{ topic }}</button>
-      </div>
-      <div class="message-display">
-        <div *ngFor="let message of messages" class="message">
-          {{ message }}
-        </div>
-      </div>
-      <div *ngIf="topics.length === 1 && topics[0] === 'Back to Main Menu'">
-        <button class="back-btn" (click)="goToMainMenu()">Back to Main Menu</button>
-      </div>
-    </div>
-    <div class="chatbox-footer">
-      <input [(ngModel)]="userInput" type="text" placeholder="Ask me anything ..." />
-      <button class="send-btn" (click)="sendMessage()">
-        <img src="assets/images/send-icon.png" alt="Send" />
-      </button>
-    </div>
-  </div>
-  <img
-    class="chatbox-image"
-    src="assets/images/Chatbox_Close.png"
-    alt="chatbox"
-    (click)="toggleChatbox()"
-  />
-</div>
+<img class="chatbox-image" src="assets/images/Chatbox_Close.png" (click)="onChatboxImageClick()" />
