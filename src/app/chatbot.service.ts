@@ -9,11 +9,12 @@ import { Observable } from 'rxjs';
 export class ChatbotService {
   private sendBrnUrl = 'http://127.0.0.1:8181/send-brn';
   private askMeUrl = 'http://127.0.0.1:8181/askMe';
+  private bubbleUrl = 'http://127.0.0.1:8181/bubble';
 
   constructor(private http: HttpClient) {}
 
-  sendBrn(): Observable<any> {
-    const body = { brn: '1408874K' };
+  sendBrn(brn: string): Observable<any> {
+    const body = { brn };
     return this.http.post(this.sendBrnUrl, body);
   }
 
@@ -23,5 +24,13 @@ export class ChatbotService {
       session_id: sessionId
     };
     return this.http.post(this.askMeUrl, body);
+  }
+
+  bubbleQuery(sessionId: string, query: string) : Observable<any> {
+    const body = {
+      query: "redflags",
+      session_id: sessionId
+    };
+    return this.http.post(this.bubbleUrl, body)
   }
 }

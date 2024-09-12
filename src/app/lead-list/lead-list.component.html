@@ -52,15 +52,20 @@
     <div class="accordion shadow-line">
       <table>
         <caption></caption>
-        <tr class="table-data">
-          <td class="name">{{ "Hello" }} ({{ "12345" }})</td>
-          <td class="item">{{ "Allo" }}</td>
-          <td class="item">{{ "012" }}-{{ "5141477" }}</td>
-          <td class="item">{{ "12/08/2024" }}</td>
+        <tr class="table-data" *ngFor="let item of dataList">
+          <td class="name">{{ item.name }} ({{ item.id }})</td>
+          <td class="item">{{ item.name }}</td>
+          <td class="item">{{ item.contact }}</td>
+          <td class="item">{{ item.date }}</td>
           <td class="item">
-            <span class="span-class">{{ "Active" | titlecase }}</span>
+            <span class="span-class">{{ item.status | titlecase }}</span>
             <div class="icon-dropdown-container">
-              <img class="right-arrow" src="{{ arrowImg }}" alt="proceed" (click)="onNextButton()"/>
+              <img
+                class="right-arrow"
+                src="{{ arrowImg }}"
+                alt="proceed"
+                (click)="onNextButton(item.brn)"
+              />
             </div>
           </td>
         </tr>

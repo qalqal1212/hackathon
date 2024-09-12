@@ -16,6 +16,11 @@
     </div>
   </div>
 
+    <!-- Bubble Button -->
+    <button class="chat-topics" (click)="sendBubbleQuery()">
+      <img src="assets/images/bubble-icon.svg" alt="Send Bubble" />
+    </button>
+
   <div class="chatbox-footer">
     <input [(ngModel)]="query" type="text" placeholder="Ask me anything..." />
     <button (click)="sendMessage()">Send</button>
