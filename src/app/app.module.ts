@@ -9,6 +9,8 @@ import { LoginPageComponent } from './login-page/login-page.component';
 import { HeaderComponent } from './header/header.component';
 import { LeadPageComponent } from './lead-page/lead-page.component';
 import { HttpClientModule } from '@angular/common/http';
+import { MarkdownModule } from 'ngx-markdown';
+
 
 @NgModule({
   declarations: [
@@ -23,7 +25,8 @@ import { HttpClientModule } from '@angular/common/http';
     AppRoutingModule,
     ReactiveFormsModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    MarkdownModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

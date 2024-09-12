@@ -4,8 +4,11 @@
   </div>
   <div class="chatbox-body" id="chatboxBody">
     <div *ngFor="let message of messages">
-      <div class="message" [ngClass]="message.sender === 'user' ? 'sent' : 'received'">
+      <div class="message" *ngIf="message.sender === 'user'" [ngClass]="message.sender === 'user' ? 'sent' : 'received'">
         {{ message.text }}
+      </div>
+      <div class="bot-message" *ngIf="message.sender === 'bot'">
+        <markdown [data]="message.text"></markdown>  <!-- Render markdown content -->
       </div>
     </div>
 
@@ -24,7 +27,12 @@
 
   <div class="chatbox-footer">
     <input [(ngModel)]="query" type="text" placeholder="Ask me anything..." [disabled]="loading" (keyup.enter)="sendMessage()" />
-    <button (click)="sendMessage()" [disabled]="loading">Send</button>
+    <img 
+      src="assets/images/send-icon.png" 
+      alt="Send" 
+      (click)="sendMessage()" 
+      [class.disabled]="loading" 
+      class="send-icon" />
   </div>
 </div>
 

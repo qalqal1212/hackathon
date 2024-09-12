@@ -35,15 +35,18 @@ export class LeadPageComponent implements OnInit{
     if (this.sessionId && this.query) {
       this.scrollToBottom(); // Auto-scroll to the bottom
       this.loading = true; // Show loader before sending the request
-
+  
+      // Push user's message directly to the messages array
+      this.messages.push({ text: this.query, sender: 'user' });
+  
       this.chatbotService.askQuery(this.sessionId, this.query).subscribe(
         (response) => {
-          const responseMessage = response[Object.keys(response)[0]]; // Get the dynamic session key
-          this.messages.push({ text: this.query, sender: 'user' });
+          const responseMessage = response[Object.keys(response)[0]]; // Extract the bot's response
+  
+          // Push bot's markdown response to the messages array
           this.messages.push({ text: responseMessage, sender: 'bot' });
           this.query = ''; // Clear the input after sending the message
           this.loading = false; // Hide loader after receiving response
-
           this.scrollToBottom(); // Auto-scroll to the bottom
         },
         (error) => {
@@ -53,9 +56,11 @@ export class LeadPageComponent implements OnInit{
       );
     }
   }
+  
 
   // Function to send hardcoded "redflags" query
   sendBubbleQuery(bubbleType: string): void {
+    this.scrollToBottom(); // Auto-scroll to the bottom
     this.loading = true;
   
     if (this.sessionId && bubbleType) {
