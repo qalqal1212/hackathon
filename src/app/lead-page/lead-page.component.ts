@@ -1,4 +1,3 @@
-// chatbot.component.ts
 import { Component, OnInit } from '@angular/core';
 import { ChatbotService } from '../chatbot.service';
 import { ActivatedRoute } from '@angular/router';
@@ -15,7 +14,7 @@ export class LeadPageComponent implements OnInit{
   messages: { text: string; sender: string }[] = [];
   loading: boolean = false; // New loading state
 
-  constructor(private chatbotService: ChatbotService,private route: ActivatedRoute) {}
+  constructor(private chatbotService: ChatbotService, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
     // Retrieve the BRN from the route parameters
@@ -34,6 +33,7 @@ export class LeadPageComponent implements OnInit{
 
   sendMessage(): void {
     if (this.sessionId && this.query) {
+      this.scrollToBottom(); // Auto-scroll to the bottom
       this.loading = true; // Show loader before sending the request
 
       this.chatbotService.askQuery(this.sessionId, this.query).subscribe(
@@ -43,6 +43,8 @@ export class LeadPageComponent implements OnInit{
           this.messages.push({ text: responseMessage, sender: 'bot' });
           this.query = ''; // Clear the input after sending the message
           this.loading = false; // Hide loader after receiving response
+
+          this.scrollToBottom(); // Auto-scroll to the bottom
         },
         (error) => {
           console.error('Error:', error);
@@ -66,6 +68,8 @@ export class LeadPageComponent implements OnInit{
           this.messages.push({ text: responseMessage, sender: 'bot' });
           this.query = ''; // Clear the input after sending the message
           this.loading = false;
+
+          this.scrollToBottom(); // Auto-scroll to the bottom
         },
         (error) => {
           console.error('Error:', error);
@@ -73,5 +77,16 @@ export class LeadPageComponent implements OnInit{
         }
       );
     }
+  }
+
+  // Scroll to bottom function
+  private scrollToBottom(): void {
+    setTimeout(() => {
+      const chatboxBody = document.getElementById('chatboxBody');
+      chatboxBody?.scrollTo({
+        top: chatboxBody.scrollHeight,
+        behavior: 'smooth'
+      });
+    }, 0);
   }
 }

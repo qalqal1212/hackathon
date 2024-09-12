@@ -2,7 +2,7 @@
   <div class="chatbox-header">
     <button class="close-btn" (click)="sessionId = null">×</button>
   </div>
-  <div class="chatbox-body">
+  <div class="chatbox-body" id="chatboxBody">
     <div *ngFor="let message of messages">
       <div class="message" [ngClass]="message.sender === 'user' ? 'sent' : 'received'">
         {{ message.text }}
@@ -15,16 +15,16 @@
     </div>
   </div>
 
-  <!-- Chat Bubble Section -->
+  <!-- Disable bubble buttons -->
   <div class="chatbox-bubble-section">
-    <button class="chat-topic-button" (click)="sendBubbleQuery('redflags')">Red Flags</button>
-    <button class="chat-topic-button" (click)="sendBubbleQuery('insights')">Insights</button>
-    <button class="chat-topic-button" (click)="sendBubbleQuery('product_recommendation')">Product Recommendation</button>
+    <button class="chat-topic-button" (click)="sendBubbleQuery('redflags')" [disabled]="loading">Red Flags</button>
+    <button class="chat-topic-button" (click)="sendBubbleQuery('insights')" [disabled]="loading">Insights</button>
+    <button class="chat-topic-button" (click)="sendBubbleQuery('product_recommendation')" [disabled]="loading">Product Recommendation</button>
   </div>
 
   <div class="chatbox-footer">
-    <input [(ngModel)]="query" type="text" placeholder="Ask me anything..." />
-    <button (click)="sendMessage()">Send</button>
+    <input [(ngModel)]="query" type="text" placeholder="Ask me anything..." [disabled]="loading" (keyup.enter)="sendMessage()" />
+    <button (click)="sendMessage()" [disabled]="loading">Send</button>
   </div>
 </div>
 
