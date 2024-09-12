@@ -53,15 +53,14 @@ export class LeadPageComponent implements OnInit{
   }
 
   // Function to send hardcoded "redflags" query
-  sendBubbleQuery() {
-    const queryRed = 'redflags';
+  sendBubbleQuery(bubbleType: string): void {
     this.loading = true;
-
-    if (this.sessionId && queryRed) {
+  
+    if (this.sessionId && bubbleType) {
       // Add user's message to the chat
-      this.messages.push({ text: queryRed, sender: 'user' });
-
-      this.chatbotService.bubbleQuery(this.sessionId, queryRed).subscribe(
+      this.messages.push({ text: bubbleType, sender: 'user' });
+  
+      this.chatbotService.bubbleQuery(this.sessionId, bubbleType).subscribe(
         (response: any) => {
           const responseMessage = response[Object.keys(response)[0]]; // Get the dynamic session key
           this.messages.push({ text: responseMessage, sender: 'bot' });

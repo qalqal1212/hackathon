@@ -1,4 +1,3 @@
-<!-- chatbot.component.html -->
 <div class="chatbox-container" [class.hidden]="!sessionId">
   <div class="chatbox-header">
     <button class="close-btn" (click)="sessionId = null">×</button>
@@ -16,10 +15,12 @@
     </div>
   </div>
 
-    <!-- Bubble Button -->
-    <button class="chat-topics" (click)="sendBubbleQuery()">
-      <img src="assets/images/bubble-icon.svg" alt="Send Bubble" />
-    </button>
+  <!-- Chat Bubble Section -->
+  <div class="chatbox-bubble-section">
+    <button class="chat-topic-button" (click)="sendBubbleQuery('redflags')">Red Flags</button>
+    <button class="chat-topic-button" (click)="sendBubbleQuery('insights')">Insights</button>
+    <button class="chat-topic-button" (click)="sendBubbleQuery('product_recommendation')">Product Recommendation</button>
+  </div>
 
   <div class="chatbox-footer">
     <input [(ngModel)]="query" type="text" placeholder="Ask me anything..." />

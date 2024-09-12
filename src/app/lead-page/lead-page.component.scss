@@ -510,18 +510,18 @@
   margin-top: 10px;
 }
 
-.chat-topics button {
-  background-color: #e9ecef;
+.chat-topic-button {
+  background-color: #f0f0f0;
   border: none;
   border-radius: 20px;
   padding: 10px 15px;
-  cursor: pointer;
   font-size: 14px;
+  cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
-.chat-topics button:hover {
-  background-color: #dee2e6;
+.chat-topic-button:hover {
+  background-color: #e0e0e0;
 }
 
 .chatbox-footer {
@@ -540,16 +540,16 @@
 }
 
 .chatbox-footer button {
-  padding: 10px;
-  background-color: transparent;
+  background-color: #ec1d23;
   color: white;
   border: none;
+  padding: 10px;
   border-radius: 5px;
   cursor: pointer;
 }
 
 .chatbox-footer button:hover {
-  background-color: transparent;
+  background-color: #d81b21;
 }
 
 .close-btn {
@@ -588,4 +588,12 @@
   cursor: pointer;
   font-size: 14px;
   transition: background-color 0.3s ease;
+}
+
+.chatbox-bubble-section {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  padding: 15px;
+  background-color: #fff;
 }
