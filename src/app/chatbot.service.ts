@@ -13,9 +13,28 @@ export class ChatbotService {
 
   constructor(private http: HttpClient) {}
 
+  // Get session ID from localStorage if it exists
+  getSessionId(brn: string): string | null {
+    return localStorage.getItem(`session_${brn}`);
+  }
+
+  // Save session ID to localStorage
+  saveSessionId(brn: string, sessionId: string): void {
+    localStorage.setItem(`session_${brn}`, sessionId);
+  }
+
+  // Only call sendBrn if session ID doesn't exist
   sendBrn(brn: string): Observable<any> {
-    const body = { brn };
-    return this.http.post(this.sendBrnUrl, body);
+    if (!this.getSessionId(brn)) {
+      const body = { brn };
+      return this.http.post(this.sendBrnUrl, body);
+    }
+    return new Observable(observer => {
+      observer.next({
+        session_id: this.getSessionId(brn)
+      });
+      observer.complete();
+    });
   }
 
   askQuery(sessionId: string, query: string): Observable<any> {
@@ -26,11 +45,11 @@ export class ChatbotService {
     return this.http.post(this.askMeUrl, body);
   }
 
-  bubbleQuery(sessionId: string, query: string) : Observable<any> {
+  bubbleQuery(sessionId: string, query: string): Observable<any> {
     const body = {
       query: "redflags",
       session_id: sessionId
     };
-    return this.http.post(this.bubbleUrl, body)
+    return this.http.post(this.bubbleUrl, body);
   }
 }

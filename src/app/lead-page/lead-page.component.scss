@@ -460,7 +460,19 @@
   padding: 1px;
   border-radius: 10px 10px 0 0;
   display: flex;
-  justify-content: end;
+  justify-content: space-around;
+  flex-direction: row-reverse;
+  align-items: center;
+}
+
+.chatbox-header-2 {
+  background-color: black;
+  color: white;
+  padding: 1px;
+  // border-radius: 10px 10px 0 0;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row-reverse;
   align-items: center;
 }
 
@@ -632,4 +644,27 @@ input[disabled], button[disabled] {
 .chat-topic-button[disabled] {
   background-color: #d3d3d3; /* Lighter color for disabled buttons */
   cursor: not-allowed;
+}
+
+.header-container {
+  .left-section {
+    display: flex;
+    align-items: center;
+
+    h1 {
+      padding-left: 0.625rem;
+      margin: 0;
+    }
+
+    .back-icon {
+      width: 2rem;
+      cursor: pointer;
+    }
+  }
+
+  .mini-label {
+    color: #666;
+    font-size: 0.875rem;
+    font-weight: 600;
+  }
 }
