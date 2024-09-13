@@ -1,57 +1,16 @@
-<app-header></app-header> <br /><br /><br /><br />
+
 <div class="leads-container">
-  <div class="leads-container-block">
-    <div class="leads-container-title">My Leads</div>
-    <div>
-      <button class="button-secondary">Create Lead</button>
-    </div>
-  </div>
-
-  <form class="search-container">
-    <div class="input-container">
-      <img
-        class="search-icon"
-        src="assets/images/icons/icon-search.svg"
-        alt="search"
-      />
-      <input
-        type="text"
-        id="searchInput"
-        placeholder="Search for a lead by its Company Name or BRN"
-        formControlName="searchInput"
-        class="form-control"
-        autocomplete="off"
-      />
-    </div>
-    <button class="button-secondary">Search</button>
-  </form>
-
-  <div class="leads-container-subblock">
-    <div class="leads-container-subtitle">
-      <span>Total number of leads :</span>
-    </div>
-  </div>
-  <table>
-    <caption>
-      List of Leads
-    </caption>
-    <tr class="table-heading">
-      <th class="name">
-        <span id="company-name">COMPANY NAME</span>
-        <!-- <img
-          id="company-name"
-          src="assets/images/icons/icon-sort-default.svg"
-          alt="sort-default"
-        /> -->
-      </th>
-      <th class="item" id="contact-name">CONTACT NAME</th>
-      <th class="item" id="contact-number">CONTACT NUMBER</th>
-      <th class="item" id="modified-date">DATE CREATED</th>
-      <th class="item" id="status">STATUS</th>
-    </tr>
-    <div class="accordion shadow-line">
-      <table>
-        <caption></caption>
+  <div class="table-container">
+    <table>
+      <caption>List of Leads</caption>
+      <tr class="table-heading">
+        <th class="name">COMPANY NAME</th>
+        <th class="item">CONTACT NAME</th>
+        <th class="item">CONTACT NUMBER</th>
+        <th class="item">DATE CREATED</th>
+        <th class="item">STATUS</th>
+      </tr>
+      <tbody>
         <tr class="table-data" *ngFor="let item of dataList">
           <td class="name">{{ item.name }} ({{ item.id }})</td>
           <td class="item">{{ item.name }}</td>
@@ -69,32 +28,7 @@
             </div>
           </td>
         </tr>
-        <div class="panel nested-table">
-          <tr class="table-heading table-data-nested back-color-table">
-            <th class="name" id="product-name">PRODUCT NAME</th>
-            <th class="item" id="aa-number">AA NUMBER</th>
-            <th class="item" id="modified-date">DATE MODIFIED</th>
-            <th class="item" id="submitted-date">DATE SUBMITTED</th>
-            <th class="item" id="status">STATUS</th>
-          </tr>
-          <!-- <tr
-          class="table-heading table-data-nested back-color-table-data nested-table-data-hover"
-          data-testid="table-data-nested"
-        >
-          <td class="name" >{{ "lead.productName" }}</td>
-          <td class="name" >--</td>
-          <td class="item" >{{ "lead.bcsAANumber" }}</td>
-          <td class="item" >--</td>
-          <td class="item" >{{ "" }}</td>
-          <td class="item" >--</td>
-          <td class="item" >{{ "" }}</td>
-          <td class="item" >--</td>
-          <td class="item" >{{ ""}}</td>
-          <td class="item" >--</td>
-          
-        </tr> -->
-        </div>
-      </table>
-    </div>
-  </table>
+      </tbody>
+    </table>
+  </div>
 </div>

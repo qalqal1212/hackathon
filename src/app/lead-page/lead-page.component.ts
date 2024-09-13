@@ -13,6 +13,7 @@ export class LeadPageComponent implements OnInit {
   query: string = '';  // Holds the user input
   messages: { text: string; sender: string }[] = [];  // Chat messages array
   loading: boolean = false;  // Loading state for chat
+  chatboxVisible: boolean = false;  // Track visibility of the chatbox
 
   constructor(
     private chatbotService: ChatbotService, 
@@ -27,18 +28,19 @@ export class LeadPageComponent implements OnInit {
       console.log('Received BRN:', this.brn);
 
       // Check if sessionId is already available for this BRN
-      const savedSessionId = this.chatbotService.getSessionId(this.brn);
-      if (savedSessionId) {
-        this.sessionId = savedSessionId;
+      this.sessionId = this.chatbotService.getSessionId(this.brn);
+      if (this.sessionId) {
         console.log('Reusing sessionId:', this.sessionId);
+        this.chatboxVisible = true;  // Show chatbox if sessionId exists
       }
     });
   }
 
   // Method triggered when clicking on the chatbox image to get the sessionId
   onChatboxImageClick(): void {
-    if (!this.sessionId) {
-      // Only call API to get sessionId if not already available
+    this.chatboxVisible = !this.chatboxVisible;  // Toggle chatbox visibility
+    if (!this.sessionId && this.chatboxVisible) {
+      // Only call API to get sessionId if not already available and chatbox is being shown
       this.chatbotService.sendBrn(this.brn).subscribe((response) => {
         this.sessionId = response.session_id;
         if (this.sessionId) {
@@ -102,6 +104,7 @@ export class LeadPageComponent implements OnInit {
   // Navigate back to the lead list
   goBack(): void {
     this.router.navigate(['/dashboard']);
+    this.chatboxVisible = false;  // Hide chatbox when navigating away
   }
 
   // Scroll to the bottom of the chatbox

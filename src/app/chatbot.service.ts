@@ -13,14 +13,14 @@ export class ChatbotService {
 
   constructor(private http: HttpClient) {}
 
-  // Get session ID from localStorage if it exists
+  // Get session ID from sessionStorage if it exists
   getSessionId(brn: string): string | null {
-    return localStorage.getItem(`session_${brn}`);
+    return sessionStorage.getItem(`session_${brn}`);
   }
 
-  // Save session ID to localStorage
+  // Save session ID to sessionStorage
   saveSessionId(brn: string, sessionId: string): void {
-    localStorage.setItem(`session_${brn}`, sessionId);
+    sessionStorage.setItem(`session_${brn}`, sessionId);
   }
 
   // Only call sendBrn if session ID doesn't exist
