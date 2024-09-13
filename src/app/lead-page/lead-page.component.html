@@ -1,7 +1,18 @@
-<div class="chatbox-container" [class.hidden]="!sessionId">
+<div class="chatbox-container" [class.hidden]="!chatboxVisible">
   <div class="chatbox-header">
-    <button class="close-btn" (click)="sessionId = null">×</button>
+    <img 
+      class="close-icon" 
+      [class.disabled]="loading" 
+      [alt]="'Close'" 
+      (click)="!loading && goBack()" 
+      src="assets/images/icons/sidebar-arrow-left.svg" 
+    />
+    <div class="session-info" *ngIf="sessionId">{{ sessionId }}</div>  <!-- Show session ID -->
   </div>
+  <div class="chatbox-header-2">
+    <div class="session-info" *ngIf="brn">{{ brn }}</div>  <!-- Show BRN -->
+  </div>
+
   <div class="chatbox-body" id="chatboxBody">
     <div *ngFor="let message of messages">
       <div class="message" *ngIf="message.sender === 'user'" [ngClass]="message.sender === 'user' ? 'sent' : 'received'">
@@ -18,7 +29,7 @@
     </div>
   </div>
 
-  <!-- Disable bubble buttons -->
+  <!-- Disable bubble buttons while loading -->
   <div class="chatbox-bubble-section">
     <button class="chat-topic-button" (click)="sendBubbleQuery('redflags')" [disabled]="loading">Red Flags</button>
     <button class="chat-topic-button" (click)="sendBubbleQuery('insights')" [disabled]="loading">Insights</button>
@@ -36,4 +47,5 @@
   </div>
 </div>
 
+<!-- Hidden chatbox trigger button -->
 <img class="chatbox-image" src="assets/images/Chatbox_Close.png" (click)="onChatboxImageClick()" />

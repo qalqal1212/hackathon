@@ -438,7 +438,6 @@
   flex-direction: column;
 }
 
-
 .chatbox-container.hidden {
   display: none;
 }
@@ -447,8 +446,6 @@
   position: absolute;
   bottom: 4rem;
   right: 23rem;
-  // width: 160px; /* Adjust size as needed */
-  // height: 150px;
   width: 190px; /* Adjust size as needed */
   height: 180px;
   cursor: pointer;
@@ -460,7 +457,18 @@
   padding: 1px;
   border-radius: 10px 10px 0 0;
   display: flex;
-  justify-content: end;
+  justify-content: space-around;
+  flex-direction: row-reverse;
+  align-items: center;
+}
+
+.chatbox-header-2 {
+  background-color: black;
+  color: white;
+  padding: 1px;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row-reverse;
   align-items: center;
 }
 
@@ -518,6 +526,7 @@
   gap: 10px;
   justify-content: center; /* Center the buttons horizontally */
 }
+
 .message-display {
   margin-top: 10px;
 }
@@ -564,15 +573,14 @@
   background-color: #d81b21;
 }
 
-.close-btn {
+.close-icon {
+  width: 24px; /* Adjust size as needed */
+  height: auto; /* Maintain aspect ratio */
+  cursor: pointer;
   background: none;
   border: none;
-  color: white;
-  font-size: 16px;
-  cursor: pointer;
 }
 
-/* chatbot.component.scss */
 .loader {
   display: flex;
   justify-content: end;
@@ -589,27 +597,9 @@
   }
 }
 
-
 .loader img {
   width: 10rem;
   height: 10rem;
-}
-
-.chat-topics {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  justify-content: center; /* Center the buttons horizontally */
-}
-
-.chat-topics button {
-  background-color: #e9ecef;
-  border: none;
-  border-radius: 20px;
-  padding: 10px 15px;
-  cursor: pointer;
-  font-size: 14px;
-  transition: background-color 0.3s ease;
 }
 
 .chatbox-bubble-section {
@@ -618,10 +608,6 @@
   gap: 15px;
   padding: 15px;
   background-color: #fff;
-}
-
-.most-outer {
-  background-color: black;
 }
 
 input[disabled], button[disabled] {
@@ -633,3 +619,27 @@ input[disabled], button[disabled] {
   background-color: #d3d3d3; /* Lighter color for disabled buttons */
   cursor: not-allowed;
 }
+
+.header-container {
+  .left-section {
+    display: flex;
+    align-items: center;
+
+    h1 {
+      padding-left: 0.625rem;
+      margin: 0;
+    }
+
+    .back-icon {
+      width: 2rem;
+      cursor: pointer;
+    }
+  }
+
+  .mini-label {
+    color: #666;
+    font-size: 0.875rem;
+    font-weight: 600;
+  }
+}
+
