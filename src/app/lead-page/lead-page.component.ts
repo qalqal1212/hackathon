@@ -1,4 +1,3 @@
-// chatbot.component.ts
 import { Component, OnInit } from '@angular/core';
 import { ChatbotService } from '../chatbot.service';
 import { ActivatedRoute } from '@angular/router';
@@ -15,7 +14,7 @@ export class LeadPageComponent implements OnInit{
   messages: { text: string; sender: string }[] = [];
   loading: boolean = false; // New loading state
 
-  constructor(private chatbotService: ChatbotService,private route: ActivatedRoute) {}
+  constructor(private chatbotService: ChatbotService, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
     // Retrieve the BRN from the route parameters
@@ -34,15 +33,21 @@ export class LeadPageComponent implements OnInit{
 
   sendMessage(): void {
     if (this.sessionId && this.query) {
+      this.scrollToBottom(); // Auto-scroll to the bottom
       this.loading = true; // Show loader before sending the request
-
+  
+      // Push user's message directly to the messages array
+      this.messages.push({ text: this.query, sender: 'user' });
+  
       this.chatbotService.askQuery(this.sessionId, this.query).subscribe(
         (response) => {
-          const responseMessage = response[Object.keys(response)[0]]; // Get the dynamic session key
-          this.messages.push({ text: this.query, sender: 'user' });
+          const responseMessage = response[Object.keys(response)[0]]; // Extract the bot's response
+  
+          // Push bot's markdown response to the messages array
           this.messages.push({ text: responseMessage, sender: 'bot' });
           this.query = ''; // Clear the input after sending the message
           this.loading = false; // Hide loader after receiving response
+          this.scrollToBottom(); // Auto-scroll to the bottom
         },
         (error) => {
           console.error('Error:', error);
@@ -51,22 +56,25 @@ export class LeadPageComponent implements OnInit{
       );
     }
   }
+  
 
   // Function to send hardcoded "redflags" query
-  sendBubbleQuery() {
-    const queryRed = 'redflags';
+  sendBubbleQuery(bubbleType: string): void {
+    this.scrollToBottom(); // Auto-scroll to the bottom
     this.loading = true;
-
-    if (this.sessionId && queryRed) {
+  
+    if (this.sessionId && bubbleType) {
       // Add user's message to the chat
-      this.messages.push({ text: queryRed, sender: 'user' });
-
-      this.chatbotService.bubbleQuery(this.sessionId, queryRed).subscribe(
+      this.messages.push({ text: bubbleType, sender: 'user' });
+  
+      this.chatbotService.bubbleQuery(this.sessionId, bubbleType).subscribe(
         (response: any) => {
           const responseMessage = response[Object.keys(response)[0]]; // Get the dynamic session key
           this.messages.push({ text: responseMessage, sender: 'bot' });
           this.query = ''; // Clear the input after sending the message
           this.loading = false;
+
+          this.scrollToBottom(); // Auto-scroll to the bottom
         },
         (error) => {
           console.error('Error:', error);
@@ -74,5 +82,16 @@ export class LeadPageComponent implements OnInit{
         }
       );
     }
+  }
+
+  // Scroll to bottom function
+  private scrollToBottom(): void {
+    setTimeout(() => {
+      const chatboxBody = document.getElementById('chatboxBody');
+      chatboxBody?.scrollTo({
+        top: chatboxBody.scrollHeight,
+        behavior: 'smooth'
+      });
+    }, 0);
   }
 }
