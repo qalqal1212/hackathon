@@ -1,10 +1,16 @@
 <div class="chatbox-container" [class.hidden]="!sessionId">
   <div class="chatbox-header">
-    <button class="close-btn" [disabled]="loading" (click)="goBack()">×</button>  <!-- Use goBack() to navigate back -->
+    <img 
+      class="close-icon" 
+      [class.disabled]="loading" 
+      [alt]="'Close'" 
+      (click)="!loading && goBack()" 
+      src="assets/images/icons/sidebar-arrow-left.svg" 
+    />
     <div class="session-info" *ngIf="sessionId">{{ sessionId }}</div>  <!-- Show session ID -->
   </div>
   <div class="chatbox-header-2">
-    <div class="session-info" *ngIf="brn">{{ brn }}</div>  <!-- Show session ID -->
+    <div class="session-info" *ngIf="brn">{{ brn }}</div>  <!-- Show BRN -->
   </div>
 
   <div class="chatbox-body" id="chatboxBody">
