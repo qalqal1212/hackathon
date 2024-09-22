@@ -1,5 +1,5 @@
 .leads-container {
-  margin-top: 12rem;
+  margin-top: 4rem;
 }
 
 .table-wrapper {
@@ -56,4 +56,31 @@ th.name {
 
 .icon-dropdown-container {
   padding-right: 1rem;
+}
+
+.leads-container-block {
+  height: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  padding-right: unset;
+}
+.leads-container-title {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #333739;
+}
+
+.button-secondary {
+  padding: 10px 30px; /* Makes the button longer */
+  background-color: #ec1d23; /* Secondary button color */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+  margin: 0 0.75rem 0 0;
 }
