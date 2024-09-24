@@ -1,51 +1,106 @@
-<div class="chatbox-container" [class.hidden]="!chatboxVisible">
-  <div class="chatbox-header">
-    <img 
-      class="close-icon" 
-      [class.disabled]="loading" 
-      [alt]="'Close'" 
-      (click)="!loading && goBack()" 
-      src="assets/images/icons/sidebar-arrow-left.svg" 
-    />
-    <div class="session-info" *ngIf="sessionId">{{ sessionId }}</div>  <!-- Show session ID -->
-  </div>
-  <div class="chatbox-header-2">
-    <div class="session-info" *ngIf="brn">{{ brn }}</div>  <!-- Show BRN -->
-  </div>
+<app-header></app-header> <br />
+<div class="backGroundImage">
+  <div class="chatbox-container" [class.hidden]="!chatboxVisible">
+    <div class="chatbox-header">
+      <img
+        class="back-icon"
+        [class.disabled]="loading"
+        [alt]="'Close'"
+        (click)="!loading && goBack()"
+        src="assets/images/icons/sidebar-arrow-left.svg"
+      />
+      <!-- New close icon to close the chatbox -->
+      <img
+        class="chatbox-close-icon"
+        [class.disabled]="loading"
+        [alt]="'Close Chatbox'"
+        (click)="closeChatbox()"
+        src="assets/images/icons/close-red.svg"
+      />
+      <div class="session-info" *ngIf="sessionId">{{ sessionId }}</div>
+      <!-- Show session ID -->
+    </div>
+    <div class="chatbox-header-2">
+      <div class="session-info" *ngIf="brn">{{ brn }}</div>
+      <!-- Show BRN -->
+    </div>
 
-  <div class="chatbox-body" id="chatboxBody">
-    <div *ngFor="let message of messages">
-      <div class="message" *ngIf="message.sender === 'user'" [ngClass]="message.sender === 'user' ? 'sent' : 'received'">
-        {{ message.text }}
+    <div class="chatbox-body" id="chatboxBody">
+      <div *ngFor="let message of messages">
+        <div
+          class="message"
+          *ngIf="message.sender === 'user'"
+          [ngClass]="message.sender === 'user' ? 'sent' : 'received'"
+        >
+          {{ message.text }}
+        </div>
+        <div class="bot-message" *ngIf="message.sender === 'bot'">
+          <markdown [data]="message.text"></markdown>
+          <!-- Render markdown content -->
+        </div>
       </div>
-      <div class="bot-message" *ngIf="message.sender === 'bot'">
-        <markdown [data]="message.text"></markdown>  <!-- Render markdown content -->
+
+      <!-- Loader -->
+      <div *ngIf="loading" class="loader">
+        <img
+          src="assets/images/Ellipsis@1x-1.0s-200px-200px.svg"
+          alt="Loading..."
+        />
       </div>
     </div>
 
-    <!-- Loader -->
-    <div *ngIf="loading" class="loader">
-      <img src="assets/images/Ellipsis@1x-1.0s-200px-200px.svg" alt="Loading..." />
+    <!-- Disable bubble buttons while loading -->
+    <div class="chatbox-bubble-section">
+      <button
+        class="chat-topic-button"
+        (click)="sendBubbleQuery('redflags')"
+        [disabled]="loading"
+      >
+        Red Flags
+      </button>
+      <button
+        class="chat-topic-button"
+        (click)="sendBubbleQuery('insights')"
+        [disabled]="loading"
+      >
+        Insights
+      </button>
+      <button
+        class="chat-topic-button"
+        (click)="sendBubbleQuery('product_recommendation')"
+        [disabled]="loading"
+      >
+        Product Recommendation
+      </button>
+    </div>
+
+    <div class="chatbox-footer">
+      <input
+        [(ngModel)]="query"
+        type="text"
+        placeholder="Ask me anything..."
+        [disabled]="loading"
+        (keyup.enter)="sendMessage()"
+      />
+      <img
+        src="assets/images/send-icon.png"
+        alt="Send"
+        (click)="sendMessage()"
+        [class.disabled]="loading"
+        class="send-icon"
+      />
     </div>
   </div>
 
-  <!-- Disable bubble buttons while loading -->
-  <div class="chatbox-bubble-section">
-    <button class="chat-topic-button" (click)="sendBubbleQuery('redflags')" [disabled]="loading">Red Flags</button>
-    <button class="chat-topic-button" (click)="sendBubbleQuery('insights')" [disabled]="loading">Insights</button>
-    <button class="chat-topic-button" (click)="sendBubbleQuery('product_recommendation')" [disabled]="loading">Product Recommendation</button>
-  </div>
-
-  <div class="chatbox-footer">
-    <input [(ngModel)]="query" type="text" placeholder="Ask me anything..." [disabled]="loading" (keyup.enter)="sendMessage()" />
-    <img 
-      src="assets/images/send-icon.png" 
-      alt="Send" 
-      (click)="sendMessage()" 
-      [class.disabled]="loading" 
-      class="send-icon" />
-  </div>
+  <!-- Hidden chatbox trigger button -->
+  <img
+    class="chatbox-image"
+    [ngClass]="{ 'open-chatbox': chatboxVisible }"
+    [src]="
+      chatboxVisible
+        ? 'assets/images/Chatbox_Open.png'
+        : 'assets/images/Chatbox_Close.png'
+    "
+    (click)="onChatboxImageClick()"
+  />
 </div>
-
-<!-- Hidden chatbox trigger button -->
-<img class="chatbox-image" src="assets/images/Chatbox_Close.png" (click)="onChatboxImageClick()" />

@@ -424,13 +424,24 @@
   height: auto !important;
 }
 
+.backGroundImage {
+  background-image: url('/assets/images/backgroundImage.png'); /* Make sure the path is correct */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 100vh; /* Full height of the viewport */
+  background-attachment: fixed; /* This ensures the background image stays in place */
+  position: relative;
+}
+
 .chatbox-container {
   position: fixed; /* Or fixed depending on your use case */
-  top: 45%;
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 320px; /* Set an appropriate width */
-  height: 500px; /* Adjust this based on your design */
+  width: 1750px; /* Set an appropriate width */
+  height: 825px; /* Adjust this based on your design */
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
   background-color: white;
@@ -444,11 +455,16 @@
 
 .chatbox-image {
   position: absolute;
-  bottom: 4rem;
-  right: 23rem;
+  bottom: 2rem;
+  right: 7rem;
   width: 190px; /* Adjust size as needed */
   height: 180px;
   cursor: pointer;
+}
+
+.open-chatbox {
+  width: 85px; /* Adjust size when chatbox is open */
+  height: 107px;
 }
 
 .chatbox-header {
@@ -457,9 +473,9 @@
   padding: 1px;
   border-radius: 10px 10px 0 0;
   display: flex;
-  justify-content: space-around;
-  flex-direction: row-reverse;
-  align-items: center;
+  justify-content: flex-start;
+  padding: 0.5rem; /* Add padding if needed */
+  position: relative;
 }
 
 .chatbox-header-2 {
@@ -498,16 +514,18 @@
 
 .received {
   align-self: flex-start;
+  font-size: 24px;
 }
 
 .sent {
   background-color: #ec1d23;
   color: white;
   align-self: flex-end;
+  font-size: 24px;
 }
 
 .chatbox-title {
-  font-size: 20px;
+  font-size: 28px;
   font-weight: 600; /* Slightly bold */
   margin-bottom: 10px;
   text-align: center;
@@ -536,7 +554,7 @@
   border: none;
   border-radius: 20px;
   padding: 10px 15px;
-  font-size: 12px;
+  font-size: 20px;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
@@ -573,12 +591,22 @@
   background-color: #d81b21;
 }
 
-.close-icon {
+.back-icon {
   width: 24px; /* Adjust size as needed */
   height: auto; /* Maintain aspect ratio */
   cursor: pointer;
   background: none;
   border: none;
+  margin-right: auto; /* Push other elements to the right */
+}
+
+.chatbox-close-icon {
+  width: 24px;
+  height: auto;
+  cursor: pointer;
+  background: none;
+  border: none;
+  margin-left: auto; /* Push the close icon to the far right */
 }
 
 .loader {

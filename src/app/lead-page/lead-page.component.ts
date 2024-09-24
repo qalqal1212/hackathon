@@ -107,6 +107,11 @@ export class LeadPageComponent implements OnInit {
     this.chatboxVisible = false;  // Hide chatbox when navigating away
   }
 
+  //Close the chat box
+  closeChatbox() {
+    this.chatboxVisible = false; // Hide the chatbox
+  }
+
   // Scroll to the bottom of the chatbox
   private scrollToBottom(): void {
     setTimeout(() => {
