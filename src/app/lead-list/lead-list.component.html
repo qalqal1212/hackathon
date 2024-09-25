@@ -8,7 +8,9 @@
   </div>
   <div class="table-container">
     <table>
-      <caption>List of Leads</caption>
+      <caption>
+        Total number of leads: 2
+      </caption>
       <tr class="table-heading">
         <th class="name">COMPANY NAME</th>
         <th class="item">CONTACT NAME</th>
@@ -19,7 +21,7 @@
       <tbody>
         <tr class="table-data" *ngFor="let item of dataList">
           <td class="name">{{ item.name }} ({{ item.id }})</td>
-          <td class="item">{{ item.name }}</td>
+          <td class="item">{{ item.contactName }}</td>
           <td class="item">{{ item.contact }}</td>
           <td class="item">{{ item.date }}</td>
           <td class="item">

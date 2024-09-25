@@ -1,5 +1,6 @@
 .leads-container {
   margin-top: 4rem;
+  font-family: sans-serif;
 }
 
 .table-wrapper {
@@ -14,40 +15,45 @@ table {
 
   caption {
     padding: 1rem;
-    font-size: 1.25rem;
+    font-size: 1rem;
     font-weight: bold;
-    color: #ec1d23; // Red color for the caption
-    text-align: center; // Align caption with table content
-    border-bottom: 2px solid #ec1d23; // Red border at the bottom of the caption
+    color: #333739; // Red color for the caption
+    text-align: left; // Align caption with table content
     background-color: #f9f9f9; // Light background for contrast
   }
 }
 
-th, td {
+th,
+td {
   padding: 0.75rem;
-  border: 1px solid #ec1d23; // Red border for the table
+  border: 0 solid #333739; // Red border for the table
   text-align: left;
 }
 
 thead {
-  background-color: #ec1d23; // Red background for header
+  background-color: #333739; // Red background for header
   color: white;
 }
 
 .table-heading {
-  background-color: #ec1d23; // Red background for headings
-  color: white;
+  background-color: #eff2f6; // Red background for headings
+  color: #333739;
   font-weight: bold;
+  font-size: 12px;
 }
 
 .table-data {
   background-color: #fff;
   font-size: 0.975rem;
   color: #333739;
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
 }
 
 .table-data:hover {
   background-color: #f9f9f9; // Light background on hover
+  background-color: #f9f9f9; /* Light background on hover */
+  transform: translateY(-5px); /* Move the element upwards */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); /* Add shadow downwards */
 }
 
 th.name {
