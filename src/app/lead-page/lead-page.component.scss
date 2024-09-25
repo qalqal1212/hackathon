@@ -476,6 +476,23 @@
   justify-content: flex-start;
   padding: 0.5rem; /* Add padding if needed */
   position: relative;
+
+  .back-icon {
+    position: relative;
+    left: 0; /* Aligns left */
+  }
+
+  .chatbox-close-icon {
+    position: relative;
+    right: 0; /* Aligns right */
+  }
+
+  .session-info {
+    position: absolute; /* Position it absolutely */
+    left: 50%;
+    transform: translateX(-50%); /* Center it horizontally */
+    font-weight: bold; /* Optional: make the session ID stand out */
+  }
 }
 
 .chatbox-header-2 {
@@ -499,22 +516,26 @@
   margin: 10px 0;
   padding: 10px;
   border-radius: 10px;
-  max-width: 80%;
+  max-width: 100%;
 }
 
 .bot-message {
   margin: 10px 0;
   padding: 10px;
   border-radius: 10px;
-  max-width: 80%;
+  max-width: 100%;
   background-color: lemonchiffon;
   color: black;
   align-self: flex-end;
+  font-size: 24px;
+  font-family: 'Helvetica', Arial, sans-serif;
+  line-height: 1.5;
 }
 
 .received {
   align-self: flex-start;
   font-size: 24px;
+  font-family: 'Helvetica', Arial, sans-serif;
 }
 
 .sent {
@@ -522,6 +543,7 @@
   color: white;
   align-self: flex-end;
   font-size: 24px;
+  font-family: 'Helvetica', Arial, sans-serif;
 }
 
 .chatbox-title {
@@ -576,6 +598,8 @@
   border: 1px solid #ccc;
   border-radius: 5px;
   margin-right: 10px;
+  font-size: 24px;
+  font-family: 'Helvetica', Arial, sans-serif;
 }
 
 .chatbox-footer button {
